@@ -1,0 +1,120 @@
+{
+    "migration_config": {
+        "src_DB": {
+            "url": "mongodb://hostname:port/db",
+            "username": "user",
+            "passwd": "pwd"
+        
+        },
+        "dest_DB": {
+            "url": "mongodb://hostname:port/db",
+            "username": "user",
+            "passwd": "pwd"
+       
+        },
+        "target_colls": [
+            "user", "userIdentity", "post", "nodemeta", "file" , "like"
+        ]
+
+    },
+
+
+    "deletion_config": {
+        "target_DB": {
+            "url": "mongodb://hostname:port/db",
+            "username": "user",
+            "passwd": "pwd"
+        },
+        
+        "policy": [
+            {
+                "target_coll": "post",
+                "maps": [
+                    {
+                        "target_key": "_id", 
+                        "map_to":{"relate_coll": "nodemeta", "key": "postId"}
+                    },
+                    {
+                        "target_key": "_id", 
+                        "map_to":{"relate_coll": "file", "key": "postId"}
+                    }
+                ]
+            },
+            
+            {
+                "target_coll": "post",
+                "maps": [
+                    {
+                        "target_key": "ownerId", 
+                        "map_to":{"relate_coll": "user", "key": "_id"}
+                    }
+                ]
+            },
+
+            {
+                "target_coll": "like",
+                "maps": [
+                    {
+                        "target_key": "postId", 
+                        "map_to":{"relate_coll": "post", "key": "_id"}
+                    }
+                ]
+            },
+            {
+                "target_coll": "like",
+                "maps": [
+                    {
+                        "target_key": "userId", 
+                        "map_to":{"relate_coll": "user", "key": "_id"}
+                    }
+                ]
+            },
+            {
+                "target_coll": "file",
+                "maps": [
+                    {
+                        "target_key": "postId", 
+                        "map_to":{"relate_coll": "post", "key": "_id"}
+                    }
+                ]
+            },
+            {
+                "target_coll": "file",
+                "maps": [
+                    {
+                        "target_key": "postId", 
+                        "map_to":{"relate_coll": "post", "key": "_id"}
+                    }
+                ]
+            }
+        ],
+        "log_dir": ""
+    },
+
+    "S3_migration_config": {
+        "target_S3": {
+            "region": "ap-northeast-1",
+            "src_bucket": "verpix-img-demo",
+            "dest_bucket": "verpix-img-production"
+            },
+
+        "target_DB": {
+            "url": "mongodb://hostname:port/db",
+            "username": "user",
+            "passwd": "pwd"
+            },
+
+        "target_schemas": [
+            {"coll": "user", "key":"profilePhotoUrl"},
+            {"coll": "post", "key":"thumbnailUrl"},
+            {"coll": "nodemeta", "key":"thumbnailUrl"},
+            {"coll": "nodemeta", "key":"srcUrl"},
+            {"coll": "nodemeta", "key":"srcDownloadUrl"},
+            {"coll": "nodemeta", "key":"srcMobileUrl"},
+            {"coll": "nodemeta", "key":"srcMobileDownloadUrl"},
+            {"coll": "file", "key":"url"}
+
+        ]
+    }
+
+}
