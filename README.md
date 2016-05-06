@@ -16,6 +16,7 @@
 * node mongoDeletion.js
 
 ### Migrate S3 bucket
+* install aws_cli : http://docs.aws.amazon.com/cli/latest/userguide/installing.html#install-bundle-other-os
 * node S3_migration.js
 
 
