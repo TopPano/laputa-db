@@ -1,0 +1,5 @@
+{"_id":{"$oid":"573449e0b6c65f922683650f"},"followerId":"bf74ddc0-e079-11e5-9c0e-e744d7fead4a","followeeId":"2e33eb50-ebe9-11e5-9a29-9ba183b46523","followAt":{"$date":"2016-05-12T09:16:16.234Z"}}
+{"_id":{"$oid":"5736a90cb6c65f9226836510"},"followerId":"20ac44b0-fa70-11e5-bf3b-6b80db64981c","followeeId":"2e33eb50-ebe9-11e5-9a29-9ba183b46523","followAt":{"$date":"2016-05-14T04:26:52.176Z"}}
+{"_id":{"$oid":"5736a948b6c65f9226836511"},"followerId":"20ac44b0-fa70-11e5-bf3b-6b80db64981c","followeeId":"7bedc660-df7b-11e5-a22d-7b202e989a7f","followAt":{"$date":"2016-05-14T04:27:52.774Z"}}
+{"_id":{"$oid":"5738699bb6c65f9226836516"},"followerId":"2e33eb50-ebe9-11e5-9a29-9ba183b46523","followeeId":"20ac44b0-fa70-11e5-bf3b-6b80db64981c","followAt":{"$date":"2016-05-15T12:20:43.680Z"}}
+{"_id":{"$oid":"573927e6b6c65f9226836517"},"followerId":"8a0a8410-df79-11e5-a22d-7b202e989a7f","followeeId":"2e33eb50-ebe9-11e5-9a29-9ba183b46523","followAt":{"$date":"2016-05-16T01:52:38.670Z"}}
