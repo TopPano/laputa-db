@@ -6,7 +6,7 @@ var deferred = require('deferred');
 
 var jsv = require('json-validator');
 
-var sourceUrl = 'mongodb://172.31.30.255:27019/verpix-production-db';
+var sourceUrl = 'mongodb://mongodb-a1:27019/verpix-production-db';
 
 var validateSchema = function(sourceDb, collection_name, schema, callback) {
     var cursor = sourceDb.collection(collection_name).find( );
