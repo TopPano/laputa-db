@@ -1,19 +1,19 @@
 {
     "migration_config": {
         "src_DB": {
-            "url": "mongodb://52.193.108.138:27019/verpix-dev-db",
-            "username": "verpix-api",
-            "passwd": "1234"
+            "url": "mongodb://host:port/db",
+            "username": "user",
+            "passwd": "pwd"
         
         },
         "dest_DB": {
-            "url": "mongodb://mongodb-a1:27019/verpix-production-db",
-            "username": "verpix-api",
-            "passwd": "verpix-27003662"
+            "url": "mongodb://host:port/db",
+            "username": "user",
+            "passwd": "pwd"
        
         },
         "target_colls": [
-            "user", "userIdentity", "post", "nodemeta", "file" , "like", "location"
+            "user", "userIdentity", "post", "nodemeta", "file" , "like", "location", "follow"
         ]
 
     },
@@ -21,9 +21,9 @@
 
     "deletion_config": {
         "target_DB": {
-            "url": "mongodb://mongodb-a1:27019/verpix-production-db",
-            "username": "verpix-api",
-            "passwd": "verpix-27003662"
+            "url": "mongodb://host:port/db",
+            "username": "user",
+            "passwd": "pwd"
         },
         
         "policy": [
@@ -94,14 +94,14 @@
     "S3_migration_config": {
         "target_S3": {
             "region": "ap-northeast-1",
-            "src_bucket": "verpix-img-demo",
-            "dest_bucket": "verpix-img-production"
+            "src_bucket": "verpix-img-production",
+            "dest_bucket": "verpix-img-development-base"
             },
 
         "target_DB": {
-            "url": "mongodb://mongodb-a1:27019/verpix-production-db",
-            "username": "verpix-api",
-            "passwd": "verpix-27003662"
+            "url": "mongodb://host:port/db",
+            "username": "user",
+            "passwd": "pwd"
             },
 
         "target_schemas": [

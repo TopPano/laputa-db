@@ -21,7 +21,7 @@ var migrateBySchema = function(target_DB, schema, target_S3_conf, callback){
                     if(doc[schema.key] !== undefined){
                         key = schema.key;
                         url = doc[key];
-                        insert_key = doc[schema.key].replace("https://verpix-img-demo.s3.amazonaws.com/", "");
+                        insert_key = doc[schema.key].replace("https://verpix-img-production.s3.amazonaws.com/", "");
                         insert_key = insert_key.replace(/%2B/g, "+");
                         insert_key = insert_key.replace(/%2F/g, "/");
                         insert_key = insert_key.replace(/%3D/g, "=");
