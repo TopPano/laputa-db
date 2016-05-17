@@ -47,14 +47,16 @@ echo -n "set password: "
 read api_pwd
 
 create_user_cmd="db = db.getSiblingDB('admin'); "
-create_user_cmd = "db.createUser({user: '$root_username', pwd:'$root_pwd',roles:[{role:'root', db: 'admin'}]})"
+create_user_cmd="$create_user_cmd db.createUser({user: '$root_username', pwd:'$root_pwd',roles:[{role:'root', db: 'admin'}]}); "
 
 create_user_cmd="$create_user_cmd db = db.getSiblingDB('$db_name'); "
 create_user_cmd="$create_user_cmd db.createUser({user: '$api_username', pwd:'$api_pwd',roles:[{role:'readWrite', db: '$db_name'}]}); "
 
 echo $create_user_cmd
 
-mongo mongodb-a1:27019 --eval "$create_user_cmd"
+ip="$(ifconfig | grep -A 1 'eth0' | tail -1 | cut -d ':' -f 2 | cut -d ' ' -f 1)"
+
+mongo $ip:27019 --eval "$create_user_cmd"
 
 #set mongod to security
 sudo sed -i '/security/c\security:\n  authorization: enabled' /etc/mongod.conf
