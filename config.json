@@ -50,7 +50,15 @@
                     }
                 ]
             },
-
+            {
+                "target_coll": "nodemeta",
+                "maps": [
+                    {
+                        "target_key": "postId", 
+                        "map_to":{"relate_coll": "post", "key": "_id"}
+                    }
+                ]
+            },
             {
                 "target_coll": "like",
                 "maps": [
@@ -99,19 +107,16 @@
             },
 
         "target_DB": {
-            "url": "mongodb://host:port/db",
-            "username": "user",
-            "passwd": "pwd"
+            "url": "mongodb://52.196.178.108:27019/verpix-db",
+            "username": "verpix-api",
+            "passwd": "1234"
             },
 
         "target_schemas": [
             {"coll": "user", "key":"profilePhotoUrl"},
-            {"coll": "post", "key":"thumbnailUrl"},
             {"coll": "nodemeta", "key":"thumbnailUrl"},
             {"coll": "nodemeta", "key":"srcUrl"},
-            {"coll": "nodemeta", "key":"srcDownloadUrl"},
             {"coll": "nodemeta", "key":"srcMobileUrl"},
-            {"coll": "nodemeta", "key":"srcMobileDownloadUrl"},
             {"coll": "file", "key":"url"}
 
         ]
