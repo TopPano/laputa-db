@@ -26,9 +26,18 @@ else
 fi
 
 #config mongodb
+mongodb_ip=`ifconfig | awk -F':' '/inet addr/&&!/127.0.0.1/{split($2,_," ");print _[1]}'`
+echo -n "set mongodb port(default=27019): "
+read mongodb_port
+
+if [ -z "$mongodb_port"]; then
+    mongodb_port=27019
+fi
+
+
 #set mongod as public
-sudo sed -i '/port/c\  port: 27019' /etc/mongod.conf
-sudo sed -i '/bindIp/c\  bindIp: 0.0.0.0' /etc/mongod.conf
+sudo sed -i '/port/c\  port: '"$mongodb_port"'' /etc/mongod.conf
+sudo sed -i '/bindIp/c\  bindIp: '"$mongodb_ip"'' /etc/mongod.conf
 #restart mongod
 sudo service mongod restart
 
@@ -66,6 +75,4 @@ sudo sed -i '/security/c\security:\n  authorization: enabled' /etc/mongod.conf
 #restart mongod
 sudo service mongod restart;
 
-#git clone laputa-migrater
-cd ~
-git clone https://github.com/TopPano/laputa-migrator.git
+#insert sample data in mongodb
