@@ -75,4 +75,36 @@ sudo sed -i '/security/c\security:\n  authorization: enabled' /etc/mongod.conf
 #restart mongod
 sudo service mongod restart;
 
-#insert sample data in mongodb
+
+echo -n "Ready insert sample data?(Y/n) "
+read is_ready_insert
+
+if [ $is_ready_insert = "Y" ]
+then
+    #insert sample data in mongodb
+    mongoimport -h $mongodb_ip:$mongodb_port -u $api_username -p $api_pwd -d $db_name -c post --type json --file data.json.d/mongo.data/post.json
+    mongoimport -h $mongodb_ip:$mongodb_port -u $api_username -p $api_pwd -d $db_name -c follow --type json --file data.json.d/mongo.data/follow.json
+    mongoimport -h $mongodb_ip:$mongodb_port -u $api_username -p $api_pwd -d $db_name -c like --type json --file data.json.d/mongo.data/like.json
+    mongoimport -h $mongodb_ip:$mongodb_port -u $api_username -p $api_pwd -d $db_name -c user --type json --file data.json.d/mongo.data/user.json
+    mongoimport -h $mongodb_ip:$mongodb_port -u $api_username -p $api_pwd -d $db_name -c userIdentity --type json --file data.json.d/mongo.data/userIdentity.json
+fi
+
+public_ip=`curl http://169.254.169.254/latest/meta-data/public-ipv4`
+
+echo -n "setup mogodb WebUI? (Y/n) "
+read is_setup_webui
+if [ $is_setup_webui = "Y" ]
+then
+    npm install mongo-express
+    cp node_modules/mongo-express/config.default.js node_modules/mongo-express/config.js 
+    sed -i 's/'\''db'\''/'\'''"$db_name"''\''/g' node_modules/mongo-express/config.js
+    sed -i 's/'\''localhost'\''/'\'''"$mongodb_ip"''\''/g' node_modules/mongo-express/config.js
+    sed -i 's/'\''pass'\''/'\'''"$api_pwd"''\''/g' node_modules/mongo-express/config.js
+    sed -i 's/27017/'"$mongodb_port"'/g' node_modules/mongo-express/config.js
+    sed -i 's/'\''admin'\''/'\'''"$api_username"''\''/g' node_modules/mongo-express/config.js
+    node node_modules/mongo-express/app.js &
+    echo "connect WebUI: http://$public_ip:8081, username and password are as your set"
+fi
+echo "connect mongodb://$public_ip:$mongodb_port"
+
+
