@@ -2,9 +2,11 @@
   "name": "verpix-migrator",
   "version": "0.0.1",
   "dependencies": {
-    "assert": "^1.3.0",
-    "async": "^2.0.0-rc.3",
-    "mongodb": "^2.1.16",
+    "assert": "^1.4.0",
+    "async": "^2.0.0-rc.5",
+    "aws-cli-js": "0.0.5",
+    "fs": "0.0.2",
+    "mongodb": "^2.1.19",
     "s3-uploader": "^1.1.0"
   },
   "main": "app.js",
