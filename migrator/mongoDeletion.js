@@ -3,7 +3,6 @@ var MongoClient = require('mongodb').MongoClient;
 
 var assert = require('assert');
 var ObjectId = require('mongodb').ObjectID;
-var deferred = require('deferred');
 var config = require('./config');
 var async = require('async');
 
@@ -12,8 +11,6 @@ var checkExist = function(params, coll, callback){
           function(err, count){
               callback(null, {params, "count":count});
           });
-
-
 };
 
 var delGarbageRecord = function(targetDB, policys, finish_delete_cb) {
@@ -90,10 +87,8 @@ var delGarbageRecord = function(targetDB, policys, finish_delete_cb) {
             };
              
         });
-
-
-
 };
+
 
 function connectToMongo(mongoClient, url, username, password, callback){
     mongoClient.connect(url, 
@@ -112,7 +107,6 @@ function connectToMongo(mongoClient, url, username, password, callback){
 
 
 module.exports = {
-
     connectAndDelete: function(target_DB_conf, policys){
         async.parallel([
             async.apply(connectToMongo, 
@@ -125,7 +119,7 @@ module.exports = {
              var targetDB = dbs[0];
              delGarbageRecord(targetDB, policys,
                              function(){
-                                console.log("bye");
+                                console.log("finish deletion");
                                 targetDB.close();
                              });
 
