@@ -8,38 +8,6 @@ var async = require('async');
 var config = require('./config');
 
 
-/*
-var s3_uploader = require('./aws-wrapper/lib/S3Uploader');
-var wget = require('wget');
-
-var uploader = new s3_uploader();
-/* download img by src first and then upload to new S3 bucket */
-var uploadImg = function(src){
-    var filename = src.slice(src.lastIndexOf('/'));
-    var file_local_path = "images/"+filename;
-    var destination = src.replace('https://verpix-img-demo.s3.amazonaws.com/', '');
-    var download = wget.download(src, file_local_path);
-    var uploader_params;
-    download.on("end", 
-      function(){
-        uploader_params = {
-            File: file_local_path, /* Required */
-            Bucket: 'verpix-img-production', /* Required */
-            Key: destination, /* Requred */
-            options: {
-                ACL: 'public-read',
-                ContentType: 'image/jpeg',
-                StorageClass: 'STANDARD'
-            }
-        
-        };
-        uploader.send(uploader_params);
-        // upload to S3 new bucket
-    })
-};
-
-
-
 // colls means collections
 var migrateColls = function(srcDB, destDB, target_colls, finish_migrate_cb) {
     /*destinationDb.createCollection("yes", null, function(err , collection){
@@ -81,42 +49,6 @@ var migrateColls = function(srcDB, destDB, target_colls, finish_migrate_cb) {
             }
         });
     
-    //var user_cursor = sourceDB.collection('user').find( );
-    //var userId_cursor = sourceDB.collection('userIdentity').find( );
-    /*
-    user_cursor.each(function(err, doc) {
-        assert.equal(err, null);
-        if (doc != null) {
-            if(doc.username.indexOf("facebook-token") > -1)
-            {
-                //var externalId = doc.username.replace("facebook-token\.", "");
-                //console.log(doc.username.replace("facebook-token\.", ""));
-            }
-
-            if(doc.profilePhotoUrl !== undefined )
-            {
-                //console.log(doc.profilePhotoUrl);
-                //uploadImg(doc.profilePhotoUrl);
-            }
-            //destinationDb.collection("user").insertOne(doc);
-        
-        } else {
-            callback("sourceDB finished");
-        }
-    });
-   */
-    /*
-     userId_cursor.each(function(err, doc) {
-        assert.equal(err, null);
-        if (doc != null) {
-            //destinationDb.collection("userIdentity").insertOne(doc);
-        
-        } else {
-            callback();
-        }
-     });
-*/
-
 };
 
 
@@ -166,4 +98,3 @@ var target_colls = config.migration_config.target_colls;
 
 connectAndMigrate(src_DB_conf, dest_DB_conf, target_colls);
 
-//functions.connectAndDelete(config.deletion_config.target_DB, config.deletion_config.policy);
