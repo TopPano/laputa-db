@@ -1,5 +1,5 @@
 var AwsCli = require('aws-cli-js');
-
+var fs = require('fs');
 var Aws = AwsCli.Aws;
 var async = require('async');
 
@@ -17,10 +17,12 @@ var download_queue = async.queue(
 
 aws.command(list_cmd).
 then(function (data) {
+    fs.writeFile("../S3/S3_map.json",JSON.stringify(data.object.Contents),
+        function(err){console.log(err)});
     var cp_cmd;
     for(var i=0; i<data.object.Contents.length; i++){
         cp_cmd = "s3 cp s3://"+src_bucket+"/"+data.object.Contents[i].Key+" ../S3/"+data.object.Contents[i].Key;
-        download_queue.push(cp_cmd, function(){console.log("finish "+cp_cmd);});
+        //download_queue.push(cp_cmd, function(){console.log("finish "+cp_cmd);});
     }
 
     download_queue.drain = function(){
