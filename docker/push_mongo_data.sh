@@ -6,4 +6,5 @@ mongoimport -h localhost:27017 --db verpix-dev-db --collection follow --type jso
 mongoimport -h localhost:27017 --db verpix-dev-db --collection user --type json --file ~/laputa-schema/data.d/mongodb/user.json
 mongoimport -h localhost:27017 --db verpix-dev-db --collection userIdentity --type json --file ~/laputa-schema/data.d/mongodb/userIdentity.json
 mongoimport -h localhost:27017 --db verpix-dev-db --collection like --type json --file ~/laputa-schema/data.d/mongodb/like.json
+sleep 5
 kill `pidof mongod`
