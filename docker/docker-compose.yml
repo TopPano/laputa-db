@@ -1,0 +1,13 @@
+version: '2'
+services:
+  verpix-dev-webui-mongodb:
+    build: ./webui_mongodb
+    ports:
+     - "8083:8081"
+    depends_on:
+     - verpix-dev-mongodb
+  verpix-dev-mongodb:
+    build: ./mongodb
+    ports:
+    - "27020:27017"
+
