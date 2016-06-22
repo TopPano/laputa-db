@@ -17,4 +17,4 @@ RUN sh /app/push_mongo_data.sh
 
 EXPOSE 27017
 
-ENTRYPOINT ["/usr/bin/mongod"]
+ENTRYPOINT ["/usr/bin/mongod", "--smallfiles"]
