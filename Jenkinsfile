@@ -2,7 +2,7 @@ node ('master') {
    stage 'Checkout'
    echo 'Checkout'
    // Get some code from a GitHub repository
-   git url: 'git@github.com:uniray7/laputa-api.git', credentialsId:'laputa-db-cred'
+   git url: 'git@github.com:uniray7/laputa-db.git', credentialsId:'laputa-db-cred'
 
    stage 'Build'
    echo 'Build'
