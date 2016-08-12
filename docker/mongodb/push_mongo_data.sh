@@ -6,5 +6,6 @@ mongoimport -h localhost:27017 --db verpix-dev-db --collection follow --type jso
 mongoimport -h localhost:27017 --db verpix-dev-db --collection user --type json --file /app/data.d/mongodb/user.json
 mongoimport -h localhost:27017 --db verpix-dev-db --collection userIdentity --type json --file /app/data.d/mongodb/userIdentity.json
 mongoimport -h localhost:27017 --db verpix-dev-db --collection like --type json --file /app/data.d/mongodb/like.json
-sleep 5
+sleep 6
 kill `pidof mongod`
+sleep 5
