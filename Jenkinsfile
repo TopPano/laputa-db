@@ -7,7 +7,8 @@ node ('master') {
    stage 'Build'
    echo 'Build'
    docker.withServer('tcp://dockerd:4243') {
-      def img = docker.build("laputa-db", "docker/mongodb/")
+      def db_img = docker.build("laputa-db", "docker/mongodb/")
+      def web_db_img = docker.build("laputa-db-webui", "docker/webui_mongodb/")
    }
 
    stage 'Unittest'
