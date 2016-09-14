@@ -9,5 +9,5 @@ services:
   verpix-dev-mongodb:
     build: ./mongodb
     ports:
-    - "27020:27017"
+    - "27017:27017"
 
