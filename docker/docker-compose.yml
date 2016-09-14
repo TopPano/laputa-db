@@ -1,13 +1,16 @@
 version: '2'
 services:
-  verpix-dev-webui-mongodb:
-    build: ./webui_mongodb
+  webui-mongodb:
+    image: verpix-webui-mongodb
+    environment:
+     - mongodb=v-mongodb
+     - pwd=verpix
     ports:
      - "8083:8081"
     depends_on:
-     - verpix-dev-mongodb
-  verpix-dev-mongodb:
-    build: ./mongodb
+     - v-mongodb
+  v-mongodb:
+    image: verpix-mongodb
     ports:
     - "27017:27017"
 
